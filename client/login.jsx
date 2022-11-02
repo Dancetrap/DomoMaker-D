@@ -1,4 +1,6 @@
 const helper = require('./helper.js');
+// const React = require('react');
+// const ReactDOM = require('require-dom');
 
 const handleLogin = (e) => {
     e.preventDefault();
@@ -31,6 +33,15 @@ const handleSignup = (e) => {
         helper.handleError('All fields are required!');
         return false;
     }
+
+    if(pass!==pass2)
+    {
+        helper.handleError('Passwords do not match');
+        return false
+    }
+
+    helper.sendPost(e.target.action, {username, pass, pass2, _csrf});
+    return false;
 }
 
 const LoginWindow = (props) => {
